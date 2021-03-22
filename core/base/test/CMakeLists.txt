@@ -24,3 +24,9 @@ ROOT_ADD_GTEST(CoreBaseTests
   LIBRARIES Core RIO ${extralibs})
 
 ROOT_ADD_GTEST(CoreErrorTests TErrorTests.cxx LIBRARIES Core)
+
+if(UNIX)
+  add_test(NAME CoreDynPathSetupUNIX
+           COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/test_dynpath_setup.sh $<TARGET_FILE:root.exe>
+           WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})
+endif()
